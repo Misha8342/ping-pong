@@ -2,6 +2,10 @@ from pygame import *
 from random import randint
 import time as tomers  
 
+font.init()
+font1 = font.Font(None, 80)
+lose = font1.render('YOU LOSE!', True, (180, 0, 0))
+
 #класс-родитель для других спрайтов
 class GameSprite(sprite.Sprite):
  #конструктор класса
@@ -42,6 +46,8 @@ class Player(GameSprite):
 class Bol(GameSprite):
     def update_bol(self):
         self.rect.x += self.speed
+        global bol_x
+        bol_x += self.speed
         self.rect.y += self.speed2
         if self.rect.y >= 440 or self.rect.y <= 0:
             self.speed2 = self.speed2*-1
@@ -70,7 +76,9 @@ tarelks = sprite.Group()
 tarelks.add(tarelka1)
 tarelks.add(tarelka2)
 
-bol = Bol(mach, 310, 220, 60, 60, 5,5)
+bol_x = 310
+bol_y = 220
+bol = Bol(mach, bol_x, bol_y, 60, 60, 5,5)
 
 bols = sprite.Group()
 bols.add(bol)
@@ -90,6 +98,9 @@ while run:
         #обновляем фон
         window.blit(background,(0,0))
 
+        if bol_x < 30 or bol_x > 570:
+            window.blit(lose,(10,70))
+            finish = True
         bol.update_bol()
         tarelka1.update_tarelka1()
         tarelka2.update_tarelka2()
