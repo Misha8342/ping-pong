@@ -43,10 +43,10 @@ class Bol(GameSprite):
     def update_bol(self):
         self.rect.x += self.speed
         self.rect.y += self.speed2
-        if self.rect.y >= 500 or self.rect.y <= 0:
-            self.speed = self.speed*-1
-        if sprite.collide_rect(tarelka1,bol) or sprite.collide_rect(tarelka2,bol):
+        if self.rect.y >= 440 or self.rect.y <= 0:
             self.speed2 = self.speed2*-1
+        if sprite.collide_rect(tarelka1,bol) or sprite.collide_rect(tarelka2,bol):
+            self.speed = self.speed*-1
 
 #self.rect.x >= 700 or self.rect.x <= 0 or 
 #if self.rect.y <= 0 or self.rect.x <= 0 or sprite.collide_rect(tarelka1,bol) or sprite.collide_rect(tarelka2,bol):
@@ -64,7 +64,7 @@ window = display.set_mode((win_width, win_height))
 background = transform.scale(image.load(backgrod), (win_width, win_height))
 
 tarelka1 = Player(platform1, 50, 200, 70, 120, 5,0)
-tarelka2 = Player(platform2, 550, 400, 70, 120, 5,0)
+tarelka2 = Player(platform2, 550, 200, 70, 120, 5,0)
 
 tarelks = sprite.Group()
 tarelks.add(tarelka1)
